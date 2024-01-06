@@ -4,6 +4,8 @@
 // F(1) = 1
 // F(n) = F(n-1) + F(n-2)
 
+// Demo commit to check commit on github
+
 // Understanding RECURSION
 
 // const factorial = (num) => {
