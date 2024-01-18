@@ -9,25 +9,48 @@
 // [number,boolean, string]=> tuple
 
 let arr1 = [1, 2, 3, 5,];
-let arr2 = [6, 7, 3, 4, 1];
+let arr2 = [6, 5, 3, 4, 1];
+// Resultant Array = [2 , 6, 4];
 
-// My Approach :
-// arr1 ==== arr2 => arr 2, 5, 9, 6, 7, 4;
-// arr2 === arr1 => arr;
-// return arr;
-
-const uniqueValueArray = (arr1: Array<number>,arr2: Array<number>): Array<number> => {
-  let arr3 = arr1.filter((num)=> {
-    for(let i=0; i<arr1.length;i++){
-       if(arr1[i] !== arr2[i]){
-        return arr1[i];
-       }
+const uniqueArray = (arr1: Array<number>,arr2: Array<number>): Array<number> => {
+  const arr:any = [];
+  for(let i of arr1){
+    if(!arr2.includes(i)){
+      arr.push(i);
     }
-  })
-  console.log(arr3);
-  return arr3;
+  }
+  for(let i of arr2){
+    if(!arr1.includes(i)){
+      arr.push(i);
+    }
+  }
+  return arr;
 };
 
-uniqueValueArray(arr1, arr2);
+console.log(uniqueArray(arr1, arr2));
+
+// Checking includes method
+
+// Learning and Checking includes method with number array
+
+// let arr1 = [1, 2, 4, 5, 100];
+// const checkIncludes = (arr1) => {
+//   let arr = [];
+//   const result = arr1.includes(4);
+//   console.log(result);
+// };
+
+// checkIncludes(arr1);
+
+// Learning and Checking includes method with string array
+
+// let arr1 = ["dragon", "lion", "tiger", "griffin", "leopard", "wolf"];
+// const checkIncludes = (arr1) => {
+//   let arr = [];
+//   const result = arr1.includes("dragon");
+//   console.log(result);
+// };
+
+// checkIncludes(arr1);
 
 export {};
