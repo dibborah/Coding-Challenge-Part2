@@ -10,6 +10,8 @@
 
 // 2, 3, 5, 7, 11
 
+// 1. isPrime
+
 const isPrime = (num: number): boolean => {
     if(num < 2){
         return false;
@@ -28,5 +30,22 @@ const isPrime = (num: number): boolean => {
     return true;
 }
 
-console.log(isPrime(14));
+// console.log(isPrime(14));
+
+// 2. Print 100 Prime numbers
+
+const printPrimes = (num:number):number => {
+    let arr:any = []// let num = 100
+    let p = 2;
+    for(let i = 0; i < num;){
+        if(isPrime(p)){
+            arr.push(p); 
+            i++;
+        }
+        p++;
+    }
+    return arr;
+}
+
+console.log(printPrimes(100));
 

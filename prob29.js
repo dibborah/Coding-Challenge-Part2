@@ -6,6 +6,7 @@
 // 2. Print 1st 100 Prime numbers
 // 3. Sum of 1st 100 Prime numbers
 // 2, 3, 5, 7, 11
+// 1. isPrime
 var isPrime = function (num) {
     if (num < 2) {
         return false;
@@ -23,4 +24,18 @@ var isPrime = function (num) {
     }
     return true;
 };
-console.log(isPrime(14));
+// console.log(isPrime(14));
+// 2. Print 100 Prime numbers
+var printPrimes = function (num) {
+    var arr = []; // let num = 100
+    var p = 2;
+    for (var i = 0; i < num;) {
+        if (isPrime(p)) {
+            arr.push(p);
+            i++;
+        }
+        p++;
+    }
+    return arr;
+};
+console.log(printPrimes(100));
