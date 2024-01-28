@@ -25,18 +25,18 @@ var isPrime = function (num) {
     return true;
 };
 // 2. Print 100 Prime numbers
-var printPrimes = function (num) {
-    var arr = []; // let num = 100
-    var p = 2;
-    for (var i = 0; i < num;) {
-        if (isPrime(p)) {
-            arr.push(p);
-            i++;
-        }
-        p++;
-    }
-    return arr;
-};
+// const printPrimes = (num:number):Array<number> => {
+//     let arr:any = []// let num = 100
+//     let p = 2;
+//     for(let i = 0; i < num;){
+//         if(isPrime(p)){
+//             arr.push(p); 
+//             i++;
+//         }
+//         p++;
+//     }
+//     return arr;
+// }
 // sum of first 100 prime numbers
 // 1st approach 
 var sumPrimes = function (num) {
@@ -51,7 +51,7 @@ var sumPrimes = function (num) {
     }
     return arr;
 };
-console.log(sumPrimes(10));
+console.log(sumPrimes(100));
 // 2nd approach
 // const sumPrimes = ():number => {
 //     const arr = printPrimes(10);

@@ -33,18 +33,18 @@ const isPrime = (num: number): boolean => {
 
 // 2. Print 100 Prime numbers
 
-const printPrimes = (num:number):Array<number> => {
-    let arr:any = []// let num = 100
-    let p = 2;
-    for(let i = 0; i < num;){
-        if(isPrime(p)){
-            arr.push(p); 
-            i++;
-        }
-        p++;
-    }
-    return arr;
-}
+// const printPrimes = (num:number):Array<number> => {
+//     let arr:any = []// let num = 100
+//     let p = 2;
+//     for(let i = 0; i < num;){
+//         if(isPrime(p)){
+//             arr.push(p); 
+//             i++;
+//         }
+//         p++;
+//     }
+//     return arr;
+// }
 
 // sum of first 100 prime numbers
 
@@ -64,7 +64,7 @@ const sumPrimes = (num:number):number => {
     return arr;
 }
 
-console.log(sumPrimes(10));
+console.log(sumPrimes(100));
 
 // 2nd approach
 
