@@ -23,20 +23,20 @@ var isPrime = function (num) {
     }
     return true;
 };
-var distancePrimes = function (num) {
+var distancePrime = function (num) {
     var lastPrime = 2;
-    var i = lastPrime + 1;
-    var foundPrime = 0;
-    while (foundPrime < num) {
+    var i = lastPrime + 2;
+    for (var p = 0; p < num;) {
         if (isPrime(i)) {
-            console.log(i - lastPrime, "=", i, "-", lastPrime);
-            foundPrime++;
+            console.log("".concat(i - lastPrime, " is the distance between ").concat(i, " and ").concat(lastPrime));
+            p++;
             lastPrime = i;
         }
         i++;
     }
 };
-console.log(distancePrimes(10));
+distancePrime(10);
+// distancePrime Solution by chatGPT :
 // function isPrime(num) {
 //     if (num <= 1) return false;
 //     for (let i = 2; i <= Math.sqrt(num); i++) {

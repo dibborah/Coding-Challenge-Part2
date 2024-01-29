@@ -27,21 +27,23 @@ const isPrime = (num: number): boolean => {
   return true;
 };
 
-const distancePrimes = (num: number): any => {
-  let lastPrime = 2;
-  let i = lastPrime + 1;
-  let foundPrime = 0;
-  while (foundPrime < num ) {
-    if (isPrime(i)) {
-        console.log(i - lastPrime, "=", i, "-", lastPrime);        
-        foundPrime++;
-        lastPrime = i;
+const distancePrime = (num:number) => {
+  let lastPrime = 2
+  let i = lastPrime + 2;
+
+  for(let p = 0; p < num; ){
+    if(isPrime(i)){
+      console.log(`${i - lastPrime} is the distance between ${i} and ${lastPrime}` );
+      p++;
+      lastPrime = i;
     }
     i++;
   }
-};
+}
 
-console.log(distancePrimes(10));
+distancePrime(10);
+
+// distancePrime Solution by chatGPT :
 
 // function isPrime(num) {
 //     if (num <= 1) return false;
