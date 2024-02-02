@@ -4,61 +4,64 @@
 // used and will be provided to the function as strings.
 // The result should be also returned as a string.
 
+// The dumbest solution in the world by me: STAY FOOLISH STAY HUNGRY
+
 // const addIndefiniteNumbers = (num1: string, num2: string): string => {
 //   const addedNum: string = num1 + num2;
 //   return addedNum;
 // };
 
-// console.log(addIndefiniteNumbers("18734773743543543300", "5008983763325455660"));
+// console.log(addIndefiniteNumbers("12345", "289"), "mySolution");
 
 // CHATGPT
 
-function addIndefiniteSizeNumbers(num1: string, num2: string): string {
-  let result = '';
-  let carry = 0;
+// function addIndefiniteSizeNumbers(num1: string, num2: string): string {
+//   let result = '';
+//   let carry = 0;
 
-  // Make the lengths of num1 and num2 equal by padding with zeros
-  while (num1.length < num2.length) {
-    num1 = '0' + num1;
-    console.log(num1, 'Num1');    
-  }
+//   // Make the lengths of num1 and num2 equal by padding with zeros
+//   while (num1.length < num2.length) {
+//     num1 = '0' + num1;
+//   }
 
-  while (num2.length < num1.length) {
-    num2 = '0' + num2;
-    console.log(num2, 'Num2');    
-  }
+//   while (num2.length < num1.length) {
+//     num2 = '0' + num2;
+//   }
+//   console.log(num1);
+//   console.log(num2);
 
-  // Iterate through the digits from right to left
-  for (let i = num1.length - 1; i >= 0; i--) {
-    const digit1 = parseInt(num1[i]);
-    const digit2 = parseInt(num2[i]);
+//   // Iterate through the digits from right to left
+//   for (let i = num1.length - 1; i >= 0; i--) {
+//     const digit1 = parseInt(num1[i]);
+//     const digit2 = parseInt(num2[i]);
 
-    // Add digits and the carry from the previous iteration
-    const sum = digit1 + digit2 + carry;
+//     // Add digits and the carry from the previous iteration
+//     const sum = digit1 + digit2 + carry;
 
-    // Update the carry for the next iteration
-    carry = Math.floor(sum / 10);
+//     // Update the carry for the next iteration
+//     carry = Math.floor(sum / 10);
 
-    // Update the result string with the current digit
-    result = (sum % 10) + result;
-  }
+//     // Update the result string with the current digit
+//     result = (sum % 10) + result;
+//   }
+//   console.log(result, 'Result');
 
-  // If there's a carry left after the loop, add it to the result
-  if (carry > 0) {
-    result = carry + result;
-  }
+//   // If there's a carry left after the loop, add it to the result
+//   if (carry > 0) {
+//     result = carry + result;
+//   }
 
-  return result;
-}
+//   return result;
+// }
 
-// Example usage:
-// const sum = addIndefiniteSizeNumbers('12345678901234567890', '98765432109876543210');
-// console.log(sum); // Outputs: 111111111011111111100
+// // Example usage:
+// // const sum = addIndefiniteSizeNumbers('12345678901234567890', '98765432109876543210');
+// // console.log(sum); // Outputs: 111111111011111111100
 
-const sum = addIndefiniteSizeNumbers('2909034221912398942349', '1290923909029309499');
-console.log(sum);
+// const sum = addIndefiniteSizeNumbers('12345', '289');
+// // console.log(sum);
 
-export {};
+// export {};
 
 // // var n1 = "2909034221912398942349";
 // // var n2 = "1290923909029309499";
@@ -82,7 +85,6 @@ export {};
 //   // + 4567
 //   // ------
 //   //   4690
- 
 
 //   // Initialize variables for the result and carry
 //   // since in basic maths u may get carry values sometimes so add those number we will have a variable to store that value (i.e carry)
@@ -113,4 +115,40 @@ export {};
 // let num1 = "2909034221912398942349";
 // let num2 = "1290923909029309499";
 // let result = addLargeNumbers(num1, num2);
-// console.log(result);  
+// console.log(result);
+
+// Doing the chatGPT solution
+
+const addIndefiniteNumbers = (num1: string, num2: string): string => {
+  let result = "";
+  let carry = 0;
+
+  while (num1.length < num2.length) {
+    num1 = "0" + num1;
+  }
+  while (num2.length < num1.length) {
+    num2 = "0" + num2;
+  }
+  console.log(num1);
+  console.log(num2);
+
+  for (let i = num1.length - 1; i >= 0; i--) {
+    let digit1 = parseInt(num1[i]);
+    let digit2 = parseInt(num2[i]);
+
+    let sum = digit1 + digit2 + carry;
+
+    carry = Math.floor(sum / 10);
+    result = (sum % 10) + result;
+  }
+
+  if (carry > 0) {
+    return result = carry + result;
+  }
+
+  return result;
+};
+
+console.log(addIndefiniteNumbers("2909034221912398942349", "1290923909029309499"), "Solution by Dib");
+
+export {};
