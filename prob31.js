@@ -52,8 +52,8 @@
 // SOLUTION BY SHASHWATH BHAI
 // function addLargeNumbers(num1, num2) {
 //   // Convert the input strings to arrays of digits
-//   let arr1 = num1.split('').map(Number);   // O/P WILL LOOK LIKE THIS [7,7]
-//   let arr2 = num2.split('').map(Number);// O/P WILL LOOK LIKE THIS [8,8]
+//   let arr1 = num1.split('').map(Number);  // O/P WILL LOOK LIKE THIS [7,7]
+//   let arr2 = num2.split('').map(Number); // O/P WILL LOOK LIKE THIS [8,8]
 //   // Make the arrays the same length by adding leading zeros
 //   while (arr1.length < arr2.length) {
 //       arr1.unshift(0);
@@ -93,27 +93,54 @@
 // let result = addLargeNumbers(num1, num2);
 // console.log(result);
 // Doing the chatGPT solution
+// const addIndefiniteNumbers = (num1: string, num2: string): string => {
+//   let result = "";
+//   let carry = 0;
+//   while (num1.length < num2.length) {
+//     num1 = "0" + num1;
+//   }
+//   while (num2.length < num1.length) {
+//     num2 = "0" + num2;
+//   }
+//   console.log(num1);
+//   console.log(num2);
+//   for (let i = num1.length - 1; i >= 0; i--) {
+//     let digit1 = parseInt(num1[i]);
+//     let digit2 = parseInt(num2[i]);
+//     let sum = digit1 + digit2 + carry;
+//     carry = Math.floor(sum / 10);
+//     result = (sum % 10) + result;
+//   }
+//   if (carry > 0) {
+//     return result = carry + result;
+//   }
+//   return result;
+// };
+// console.log(addIndefiniteNumbers("2909034221912398942349", "1290923909029309499"), "Solution by Dib");
+// Solution provided by Shashwath Bhai
+// By using this solution two new method I learned 
+// .map(Number) To convert to numbers
+// .join() to join the arrays into a single string where a seperator can also be provided
 var addIndefiniteNumbers = function (num1, num2) {
-    var result = "";
+    var arr1 = num1.split("").map(Number);
+    var arr2 = num2.split("").map(Number);
+    while (arr1.length < arr2.length) {
+        arr1.unshift(0);
+    }
+    while (arr2.length < arr1.length) {
+        arr2.unshift(0);
+    }
+    var result = [];
     var carry = 0;
-    while (num1.length < num2.length) {
-        num1 = "0" + num1;
-    }
-    while (num2.length < num1.length) {
-        num2 = "0" + num2;
-    }
-    console.log(num1);
-    console.log(num2);
-    for (var i = num1.length - 1; i >= 0; i--) {
-        var digit1 = parseInt(num1[i]);
-        var digit2 = parseInt(num2[i]);
-        var sum = digit1 + digit2 + carry;
+    for (var i = arr1.length - 1; i >= 0; i--) {
+        var sum = arr1[i] + arr2[i] + carry;
+        result.unshift(sum % 10);
         carry = Math.floor(sum / 10);
-        result = (sum % 10) + result;
     }
     if (carry > 0) {
-        return result = carry + result;
+        result.unshift(carry);
     }
+    result = result.join("");
     return result;
 };
-console.log(addIndefiniteNumbers("2909034221912398942349", "1290923909029309499"), "Solution by Dib");
+console.log(addIndefiniteNumbers("2909034221912398942349", "1290923909029309499"));
