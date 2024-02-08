@@ -62,37 +62,30 @@
 // console.log(countWords("  I like to learn Javascript with codeguppy  "));
 // console.log(countWords("  I like    to learn Javascript      with codeguppy  "));
 
+// Solution provided by Website 2 :
 
-const isSeparator = (text:string): boolean => {
-    const separators: any  = [" ", "\t", "\n", "\r", "?", ".", ";", "!"];
-    return separators.includes(text);
+function isSeparator(c: any){
+    var seperators: any = [" ","\t", "\n", "\r", ",", ";", ".", "!", "?" ];
+    return seperators.includes(c);
 }
 
-const countWords = (text: string): number => {
-    let words = 0;
-    let wasSeparator = true;
+function countWords(text){
+    var words = 0;
 
-    for(let e of text){
-        // if seperator exists then words shouldnot increase
-        if(isSeparator(e)){
-            wasSeparator = true;
-            continue;
-        }
-
-        // if seperator was not found and any valid character is found that words should by 1 and then wasSeparator should be turned false so that any other character on a same word should not increase the word count by more than one since the starting character of the word has already increases the word count
-        if(wasSeparator){
-            words++;
-            wasSeparator = false;
-        }
+    if(text.length > 0 && !isSeparator(text[0])){
+        words++;
     }
-    
+    for(var i = 1; i < text.length ; i++){
+        var currChr = text[i];
+        var prevChr = text[i - 1];
+
+        if(!isSeparator(currChr) && !isSeparator(prevChr)){
+            words++;
+        }
+
+    }
     return words;
 }
-
-console.log(countWords("  Javascript is cool  "));
-console.log(countWords("  Javascript    is .cool  "));
-console.log(countWords("  Javascript    is !    a cool problem  . solving language "));
-
 
 export {}
   
