@@ -62,30 +62,7 @@
 // console.log(countWords("  I like to learn Javascript with codeguppy  "));
 // console.log(countWords("  I like    to learn Javascript      with codeguppy  "));
 
-// Solution provided by Website 2 :
 
-function isSeparator(c: any){
-    var seperators: any = [" ","\t", "\n", "\r", ",", ";", ".", "!", "?" ];
-    return seperators.includes(c);
-}
 
-function countWords(text){
-    var words = 0;
-
-    if(text.length > 0 && !isSeparator(text[0])){
-        words++;
-    }
-    for(var i = 1; i < text.length ; i++){
-        var currChr = text[i];
-        var prevChr = text[i - 1];
-
-        if(!isSeparator(currChr) && !isSeparator(prevChr)){
-            words++;
-        }
-
-    }
-    return words;
-}
-
-export {}
+export {};
   
