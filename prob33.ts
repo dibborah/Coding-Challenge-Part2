@@ -9,7 +9,7 @@ const isSeparator = (text:any): boolean => {
     return separators.includes(text);
 }
 
-const countWords = (text:string): number => {
+const capitalizeWords = (text:string): any=> {
     let words = 0;
     let wasSeparator;
 
@@ -27,13 +27,14 @@ const countWords = (text:string): number => {
             continue;
         }
         if(wasSeparator){
-            words++;
+            // words++;
+            text[i].toUpperCase();
             // console.log("Word is increased by 1");            
             wasSeparator = false;
         }
     }
 
-    return words;
+    return text;
 };
 
 
@@ -42,7 +43,10 @@ const countWords = (text:string): number => {
 // console.log(countWords("Javascript is my favourite language"));// 5
 
 // console.log(countWords(" Ja v hihhdc"));// 3
-console.log("Answer =>",countWords("   Javascript is my favourite language   "));// 5
-console.log(countWords("   Javascript is    my favourite    language   "));// 5
+// console.log("Answer =>",countWords("   Javascript is my favourite language   "));// 5
+// console.log(countWords("   Javascript is    my favourite    language   "));// 5
+
+console.log(capitalizeWords("Javascript is my favourite language"));
+
 
 export {};
