@@ -9,33 +9,23 @@ const isSeparator = (text:any): boolean => {
     return separators.includes(text);
 }
 
-const capitalizeWords = (text:string): any=> {
-    let words = 0;
-    let wasSeparator;
-
-    // character a words + 1
-    // once character increases the consecutive number should not be increase word count
-
-    // First if empty
-
-    // 0 => j
-
-    for(let i = 0 ; i < text.length; i++ ){
-        // console.log(text[i], "Some Character");            
-        if(isSeparator(text[i])){
-            wasSeparator = true;
-            continue;
+const capitalizeWords = (text:string): any => {
+    var text2 = "";
+    for(var i = 0; i < text.length; i++){
+        var currChr = text[i];
+        var prevChr = i > 0 ? text[i - 1] : " ";
+        
+        if(!isSeparator(currChr) && isSeparator(prevChr)){
+            currChr = currChr.toUpperCase();    
         }
-        if(wasSeparator){
-            // words++;
-            text[i].toUpperCase();
-            // console.log("Word is increased by 1");            
-            wasSeparator = false;
-        }
+        text2 += currChr;
     }
-
-    return text;
+    return text2;
 };
+
+console.log(capitalizeWords("Javascript is my favourite language"));// 5
+// console.log(capitalizeWords("   Javascript is my favourite language   "));
+
 
 
 // console.log(countWords(""));// 0
