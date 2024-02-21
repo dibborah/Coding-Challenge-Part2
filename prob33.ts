@@ -46,7 +46,7 @@ const capitalizeWords = (text: string): string => {
   return text2;
 };
 
-console.log(capitalizeWords("  javascipt is my favourite language  "));
+console.log(capitalizeWords(" javascipt is my favourite language  "));
 console.log(capitalizeWords("javascipt is my favourite language"));
 console.log(capitalizeWords("  javascipt   is  my   favourite    language    "));
 
