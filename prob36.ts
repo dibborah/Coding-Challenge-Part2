@@ -45,23 +45,30 @@ const isSeparator = (text: string): boolean => {
 
 const testText = "javascript is my favourite language not as a programming language but as a general language";
 
-const capitalizeWords = (text: string): string => {
-  let arr =  '';
-  for (let i = 0; i < text.length; i++) {
-    let curr = text[i];
-    const prevCurr = i > 0 ? text[i - 1] : " ";
-    if(!isSeparator(curr) && isSeparator(prevCurr)) {
-      curr = curr.toUpperCase();
-    }
-    arr += curr;
-  }
-  return arr;
-};
+// const capitalizeWords = (text: string): string => {
+//   let arr =  '';
+//   for (let i = 0; i < text.length; i++) {
+//     let curr = text[i];
+//     const prevCurr = i > 0 ? text[i - 1] : " ";
+//     if(!isSeparator(curr) && isSeparator(prevCurr)) {
+//       curr = curr.toUpperCase();
+//     }
+//     arr += curr;
+//   }
+//   return arr;
+// };
 
-console.log(capitalizeWords(testText));
+// console.log(capitalizeWords(testText));
+
+
 
 // Coding challenge #31-a: Create a function
 // that will return the number of words in a text
+
+const getWordsNumber = (text:string): number => {
+
+  return 0;
+}
 
 // Coding challenge #34: Create a function that will
 // return an array with words inside a text
