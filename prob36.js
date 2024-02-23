@@ -31,20 +31,32 @@ var isSeparator = function (text) {
     return separators.includes(text);
 };
 var testText = "javascript is my favourite language not as a programming language but as a general language";
-var capitalizeWords = function (text) {
-    var arr = '';
-    for (var i = 0; i < text.length; i++) {
-        var curr = text[i];
-        var prevCurr = i > 0 ? text[i - 1] : " ";
-        if (!isSeparator(curr) && isSeparator(prevCurr)) {
-            curr = curr.toUpperCase();
-        }
-        arr += curr;
-    }
-    return arr;
-};
-console.log(capitalizeWords(testText));
+// const capitalizeWords = (text: string): string => {
+//   let arr =  '';
+//   for (let i = 0; i < text.length; i++) {
+//     let curr = text[i];
+//     const prevCurr = i > 0 ? text[i - 1] : " ";
+//     if(!isSeparator(curr) && isSeparator(prevCurr)) {
+//       curr = curr.toUpperCase();
+//     }
+//     arr += curr;
+//   }
+//   return arr;
+// };
+// console.log(capitalizeWords(testText));
 // Coding challenge #31-a: Create a function
 // that will return the number of words in a text
+var getWordsNumber = function (text) {
+    var words = 0;
+    for (var i = 0; i < text.length; i++) {
+        var currChr = text[i];
+        var prevCurr = i > 0 ? text[i - 1] : " ";
+        if (!isSeparator(currChr) && isSeparator(prevCurr)) {
+            words += 1;
+        }
+    }
+    return words;
+};
+console.log(getWordsNumber("Hii, my name is khan"));
 // Coding challenge #34: Create a function that will
 // return an array with words inside a text
