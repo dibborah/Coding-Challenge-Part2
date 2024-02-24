@@ -64,19 +64,39 @@ const testText =
 // Coding challenge #31-a: Create a function
 // that will return the number of words in a text
 
-const getWordsNumber = (text: string): number => {
-  let words = 0;
-  for (let i = 0; i < text.length; i++) {
-    let currChr = text[i];
-    let prevCurr = i > 0 ? text[i  - 1] : " ";
-    if(!isSeparator(currChr) && isSeparator(prevCurr)){
-      words += 1;
-    }
-  }
-  return words;
-};
+// My Solution 
 
-console.log(getWordsNumber("Hii, my name is khan"));
+// const getWordsNumber = (text: string): number => {
+//   let words = 0;
+//   for (let i = 0; i < text.length; i++) {
+//     let currChr = text[i];
+//     let prevCurr = i > 0 ? text[i  - 1] : " ";
+//     if(!isSeparator(currChr) && isSeparator(prevCurr)){
+//       words += 1;
+//     }
+//   }
+//   return words;
+// };
+
+// Websites Solution
+
+const countWords = (text:string): number => {
+  let wasSeparator = true;
+  let words = 0;
+  for(let i = 0; i < text.length; i++) {
+    if(isSeparator(text[i])) {
+      wasSeparator = true;
+      continue;
+    }
+    if(wasSeparator){
+      words++;
+      wasSeparator = false;
+    }
+  } 
+  return words;
+}
+
+console.log(countWords("Hii, my name is khan and I am,,,, ,,,, nota terrorist"));
 
 // Coding challenge #34: Create a function that will
 // return an array with words inside a text

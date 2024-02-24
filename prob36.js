@@ -46,17 +46,34 @@ var testText = "javascript is my favourite language not as a programming languag
 // console.log(capitalizeWords(testText));
 // Coding challenge #31-a: Create a function
 // that will return the number of words in a text
-var getWordsNumber = function (text) {
+// My Solution 
+// const getWordsNumber = (text: string): number => {
+//   let words = 0;
+//   for (let i = 0; i < text.length; i++) {
+//     let currChr = text[i];
+//     let prevCurr = i > 0 ? text[i  - 1] : " ";
+//     if(!isSeparator(currChr) && isSeparator(prevCurr)){
+//       words += 1;
+//     }
+//   }
+//   return words;
+// };
+// Websites Solution
+var countWords = function (text) {
+    var wasSeparator = true;
     var words = 0;
     for (var i = 0; i < text.length; i++) {
-        var currChr = text[i];
-        var prevCurr = i > 0 ? text[i - 1] : " ";
-        if (!isSeparator(currChr) && isSeparator(prevCurr)) {
-            words += 1;
+        if (isSeparator(text[i])) {
+            wasSeparator = true;
+            continue;
+        }
+        if (wasSeparator) {
+            words++;
+            wasSeparator = false;
         }
     }
     return words;
 };
-console.log(getWordsNumber("Hii, my name is khan"));
+console.log(countWords("Hii, my name is khan and I am,,,, ,,,, nota terrorist"));
 // Coding challenge #34: Create a function that will
 // return an array with words inside a text
