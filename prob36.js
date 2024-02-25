@@ -46,7 +46,7 @@ var testText = "javascript is my favourite language not as a programming languag
 // console.log(capitalizeWords(testText));
 // Coding challenge #31-a: Create a function
 // that will return the number of words in a text
-// My Solution 
+// My Solution
 // const getWordsNumber = (text: string): number => {
 //   let words = 0;
 //   for (let i = 0; i < text.length; i++) {
@@ -59,21 +59,42 @@ var testText = "javascript is my favourite language not as a programming languag
 //   return words;
 // };
 // Websites Solution
-var countWords = function (text) {
-    var wasSeparator = true;
-    var words = 0;
-    for (var i = 0; i < text.length; i++) {
-        if (isSeparator(text[i])) {
-            wasSeparator = true;
-            continue;
-        }
-        if (wasSeparator) {
-            words++;
-            wasSeparator = false;
-        }
-    }
-    return words;
-};
-console.log(countWords("Hii, my name is khan and I am,,,, ,,,, nota terrorist"));
+// const countWords = (text:string): number => {
+//   let wasSeparator = true;
+//   let words = 0;
+//   for(let i = 0; i < text.length; i++) {
+//     if(isSeparator(text[i])) {
+//       wasSeparator = true;
+//       continue;
+//     }
+//     if(wasSeparator){
+//       words++;
+//       wasSeparator = false;
+//     }
+//   }
+//   return words;
+// }
 // Coding challenge #34: Create a function that will
 // return an array with words inside a text
+// javascript is good // Length = 18 // Case 1. startword = 0 and endword = 11
+//  Case 2. startWord = 12 and endWord = 14
+//   Case 3. startWord = 15 and endword = 19
+var arrayWords = function (text) {
+    var arr = [];
+    var startWord;
+    var allowToEnter = false;
+    for (var i = 0; i <= text.length; i++) {
+        var c = i < text.length ? text[i] : " ";
+        if (!isSeparator(c) && !allowToEnter) {
+            startWord = i;
+            allowToEnter = true;
+        }
+        if (isSeparator(c) && allowToEnter) {
+            arr.push(text.substring(startWord, i));
+            allowToEnter = false;
+        }
+    }
+    return arr;
+};
+console.log(arrayWords("javascript is good"));
+// console.log(arrayWords("Hii, my name is khan and I am,,,, ,,,, nota terrorist"));
