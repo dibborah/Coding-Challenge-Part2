@@ -82,19 +82,19 @@ var testText = "javascript is my favourite language not as a programming languag
 var arrayWords = function (text) {
     var arr = [];
     var startWord;
-    var allowToEnter = false;
+    var fixedStartWord = true;
     for (var i = 0; i <= text.length; i++) {
         var c = i < text.length ? text[i] : " ";
-        if (!isSeparator(c) && !allowToEnter) {
+        if (!isSeparator(c) && fixedStartWord) {
             startWord = i;
-            allowToEnter = true;
+            fixedStartWord = false;
         }
-        if (isSeparator(c) && allowToEnter) {
+        if (isSeparator(c) && !fixedStartWord) {
             arr.push(text.substring(startWord, i));
-            allowToEnter = false;
+            fixedStartWord = true;
         }
     }
     return arr;
 };
-console.log(arrayWords("javascript is good"));
+console.log(arrayWords("javascript is good programming language"));
 // console.log(arrayWords("Hii, my name is khan and I am,,,, ,,,, nota terrorist"));

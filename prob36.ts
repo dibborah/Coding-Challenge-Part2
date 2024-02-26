@@ -106,21 +106,21 @@ const testText =
 const arrayWords = (text: string) => {
   let arr: any = [];
   let startWord;
-  let allowToEnter = false;
+  let fixedStartWord = true;
   for (let i = 0; i <= text.length; i++) {
     let c = i < text.length ? text[i] : " ";
-    if (!isSeparator(c) && !allowToEnter) {
+    if (!isSeparator(c) && fixedStartWord) {
       startWord = i;
-      allowToEnter = true
+      fixedStartWord = false;
     }
-    if (isSeparator(c) && allowToEnter) {
+    if (isSeparator(c) && !fixedStartWord) {
       arr.push(text.substring(startWord, i));
-      allowToEnter = false;
+      fixedStartWord = true;
     }
   }
   return arr;
 };
 
-console.log(arrayWords("javascript is good"));
+console.log(arrayWords("javascript is good programming language"));
 
 // console.log(arrayWords("Hii, my name is khan and I am,,,, ,,,, nota terrorist"));
