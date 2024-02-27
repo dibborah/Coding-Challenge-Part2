@@ -2,7 +2,7 @@
 // a CSV text to a “bi-dimensional” array
 
 // Example usage
-const csv = `Name,Age,Email
+const exampleCSV = `Name,Age,Email
 John,25,john@example.com
 Alice,30,alice@example.com
 Bob,35,bob@example.com`;
@@ -12,16 +12,20 @@ Bob,35,bob@example.com`;
 //   return separator.includes(text);
 // };
 
-const newLineSeparator = (text:string): boolean => {
-  const separators:any = [" ", ",", ".", "?", "!", "\n", "\t", "\r", "(", ")"];   
+const newLineSeparator = (text: string): boolean => {
+  const separators: any = ["\n"];
+  return separators.includes(text);
+};
+const commaSeparator = (text: string): boolean => {
+  const separators: any = [","];
   return separators.includes(text);
 }
-const csvToArray = (csv: string) => {
+const csvToArraySingleDimension = (csv: string) => {
   let arr: any = [];
   let doNotEnter = true;
   let startWord = 0;
   for (let i = 0; i <= csv.length; i++) {
-    let c = i < length ? csv[i] : ",";
+    let c = i < csv.length ? csv[i] : "\n";
     if (!newLineSeparator(c) && doNotEnter) {
       startWord = i;
       doNotEnter = false;
@@ -34,8 +38,33 @@ const csvToArray = (csv: string) => {
   return arr;
 };
 
-console.log(csvToArray("hi boy, who are you"));
-console.log(csv);
+// console.log(csvToArraySingleDimension(exampleCSV));
 
+const resultArray = csvToArraySingleDimension(exampleCSV);
 
+const csvToArrayBiDimension = (csv: Array<string>) => {
+  let arr_ = csvToArraySingleDimension(exampleCSV);
+  let parentArray: any = [];
+  arr_.map((item: any, index: number)=> {
+    return (item, index) => {
+        for(let i = 0; i <= item.length;i++) {
+          let c = i < item.length ? item[i] : ",";
+          let startWord;
+          let doNotEnter = true;
+          if(!commaSeparator(c) && doNotEnter){
+            startWord = i
+            doNotEnter = false;
+          }
+          if(commaSeparator(c) && !doNotEnter) {
+            parentArray.push(startWord, i);
+            doNotEnter= true;
+          }
+        }
+        return parentArray;
+    }
+  })
+};
+
+console.log(csvToArrayBiDimension(resultArray))
+;
 export {};

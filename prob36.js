@@ -1,23 +1,27 @@
 "use strict";
 // Create a function to convert
 // a CSV text to a “bi-dimensional” array
-Object.defineProperty(exports, "__esModule", { value: true });
+// Object.defineProperty(exports, "__esModule", { value: true });
 // Example usage
-var csv = "Name,Age,Email\nJohn,25,john@example.com\nAlice,30,alice@example.com\nBob,35,bob@example.com";
+var exampleCSV = "Name,Age,Email\nJohn,25,john@example.com\nAlice,30,alice@example.com\nBob,35,bob@example.com";
 // const isSeparator = (text: string): boolean => {
 //   const separator: any = [","];
 //   return separator.includes(text);
 // };
 var newLineSeparator = function (text) {
-    var separators = [" ", ",", ".", "?", "!", "\n", "\t", "\r", "(", ")"];
+    var separators = ["\n"];
     return separators.includes(text);
 };
-var csvToArray = function (csv) {
+var commaSeparator = function (text) {
+    var separators = [","];
+    return separators.includes(text);
+};
+var csvToArraySingleDimension = function (csv) {
     var arr = [];
     var doNotEnter = true;
     var startWord = 0;
     for (var i = 0; i <= csv.length; i++) {
-        var c = i < length ? csv[i] : ",";
+        var c = i < csv.length ? csv[i] : "\n";
         if (!newLineSeparator(c) && doNotEnter) {
             startWord = i;
             doNotEnter = false;
@@ -29,5 +33,28 @@ var csvToArray = function (csv) {
     }
     return arr;
 };
-console.log(csvToArray("hi boy, who are you"));
-console.log(csv);
+// console.log(csvToArraySingleDimension(exampleCSV));
+var resultArray = csvToArraySingleDimension(exampleCSV);
+var csvToArrayBiDimension = function (csv) {
+    var arr_ = csvToArraySingleDimension(exampleCSV);
+    var parentArray = [];
+    arr_.map(function (item, index) {
+        return function (item, index) {
+            for (var i = 0; i <= item.length; i++) {
+                var c = i < item.length ? item[i] : ",";
+                var startWord = void 0;
+                var doNotEnter = true;
+                if (!commaSeparator(c) && doNotEnter) {
+                    startWord = i;
+                    doNotEnter = false;
+                }
+                if (commaSeparator(c) && !doNotEnter) {
+                    parentArray.push(startWord, i);
+                    doNotEnter = true;
+                }
+            }
+            return parentArray;
+        };
+    });
+};
+console.log(csvToArrayBiDimension(resultArray));
