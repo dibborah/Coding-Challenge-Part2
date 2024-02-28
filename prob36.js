@@ -2,59 +2,86 @@
 // Create a function to convert
 // a CSV text to a “bi-dimensional” array
 // Object.defineProperty(exports, "__esModule", { value: true });
+// My Solution
 // Example usage
-var exampleCSV = "Name,Age,Email\nJohn,25,john@example.com\nAlice,30,alice@example.com\nBob,35,bob@example.com";
-// const isSeparator = (text: string): boolean => {
-//   const separator: any = [","];
-//   return separator.includes(text);
+// const exampleCSV = `Name,Age,Email
+// John,25,john@example.com
+// Alice,30,alice@example.com
+// Bob,35,bob@example.com`;
+// // const isSeparator = (text: string): boolean => {
+// //   const separator: any = [","];
+// //   return separator.includes(text);
+// // };
+// const newLineSeparator = (text: string): boolean => {
+//   const separators: any = ["\n"];
+//   return separators.includes(text);
 // };
-var newLineSeparator = function (text) {
-    var separators = ["\n"];
-    return separators.includes(text);
-};
-var commaSeparator = function (text) {
-    var separators = [","];
-    return separators.includes(text);
-};
-var csvToArraySingleDimension = function (csv) {
-    var arr = [];
-    var doNotEnter = true;
-    var startWord = 0;
-    for (var i = 0; i <= csv.length; i++) {
-        var c = i < csv.length ? csv[i] : "\n";
-        if (!newLineSeparator(c) && doNotEnter) {
-            startWord = i;
-            doNotEnter = false;
-        }
-        if (newLineSeparator(c) && !doNotEnter) {
-            arr.push(csv.substring(startWord, i));
-            doNotEnter = true;
-        }
-    }
-    return arr;
-};
+// const commaSeparator = (text: string): boolean => {
+//   const separators: any = [","];
+//   return separators.includes(text);
+// }
+// const csvToArraySingleDimension = (csv: string) => {
+//   let arr: any = [];
+//   let doNotEnter = true;
+//   let startWord = 0;
+//   for (let i = 0; i <= csv.length; i++) {
+//     let c = i < csv.length ? csv[i] : "\n";
+//     if (!newLineSeparator(c) && doNotEnter) {
+//       startWord = i;
+//       doNotEnter = false;
+//     }
+//     if (newLineSeparator(c) && !doNotEnter) {
+//       arr.push(csv.substring(startWord, i));
+//       doNotEnter = true;
+//     }
+//   }
+//   return arr;
+// };
 // console.log(csvToArraySingleDimension(exampleCSV));
-var resultArray = csvToArraySingleDimension(exampleCSV);
-var csvToArrayBiDimension = function (csv) {
-    var arr_ = csvToArraySingleDimension(exampleCSV);
-    var parentArray = [];
-    arr_.map(function (item, index) {
-        return function (item, index) {
-            for (var i = 0; i <= item.length; i++) {
-                var c = i < item.length ? item[i] : ",";
-                var startWord = void 0;
-                var doNotEnter = true;
-                if (!commaSeparator(c) && doNotEnter) {
-                    startWord = i;
-                    doNotEnter = false;
-                }
-                if (commaSeparator(c) && !doNotEnter) {
-                    parentArray.push(startWord, i);
-                    doNotEnter = true;
-                }
-            }
-            return parentArray;
-        };
+// const resultArray = csvToArraySingleDimension(exampleCSV);
+// const csvToArrayBiDimension = (csv: Array<string>) => {
+//   let arr_ = csvToArraySingleDimension(exampleCSV);
+//   let parentArray: any = [];
+//   arr_.map((item: any, index: number)=> {
+//     return (item, index) => {
+//         for(let i = 0; i <= item.length;i++) {
+//           let c = i < item.length ? item[i] : ",";
+//           let startWord;
+//           let doNotEnter = true;
+//           if(!commaSeparator(c) && doNotEnter){
+//             startWord = i
+//             doNotEnter = false;
+//           }
+//           if(commaSeparator(c) && !doNotEnter) {
+//             parentArray.push(startWord, i);
+//             doNotEnter= true;
+//           }
+//         }
+//         return parentArray;
+//     }
+//   })
+// };
+// console.log(csvToArrayBiDimension(resultArray));
+// Solution by ChatGPT
+// const csvText  = `Name, Age, City
+// John, 30, New York
+// Alice, 25, Los Angeles`;
+// Example usage
+var csvText = "Name,Age,Email\nJohn,25,john@example.com\nAlice,30,alice@example.com\nBob,35,bob@example.com";
+function csvToArray(csvText, delimiter) {
+    if (delimiter === void 0) { delimiter = ','; }
+    // Split the CSV text into an array of lines
+    var lines = csvText.split('\n');
+    // Initialize the result array
+    var result = [];
+    // Iterate over each line in the CSV text
+    lines.forEach(function (line) {
+        // Split the line into an array of values using the specified delimiter
+        var values = line.split(delimiter);
+        // Add the array of values to the result array
+        result.push(values);
     });
-};
-console.log(csvToArrayBiDimension(resultArray));
+    return result;
+}
+var csvArray = csvToArray(csvText);
+console.log(csvArray);
